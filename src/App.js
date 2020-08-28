@@ -1,14 +1,13 @@
 import React from "react";
+
 import Jumbo from "./components/Jumbo";
-import SearchBar from "./components/SearchBar";
-import Table from "./components/Table";
+import Search from "./containers/Search";
 
 const App = () => {
   return (
     <div className="text-center">
       <Jumbo />
-      <SearchBar />
-      <Table />
+      <Search />
     </div>
   );
 };
