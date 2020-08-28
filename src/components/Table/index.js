@@ -8,11 +8,16 @@ const formatDate = (date) => {
   return "dob";
 };
 
+const renderImage = (src, alt) => {
+  return <img src={src} alt={alt} class="img-thumbnail" />;
+};
+
 const renderRow = (row) => {
+  const name = formatName(row.name);
   return (
     <tr>
-      <td>{row.picture.large}</td>
-      <td>{formatName(row.name)}</td>
+      <td>{renderImage(row.picture.large, name)}</td>
+      <td>{name}</td>
       <td>{row.phone}</td>
       <td>{row.email}</td>
       <td>{formatDate(row.dob.date)}</td>
