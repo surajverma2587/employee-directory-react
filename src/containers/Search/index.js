@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import moment from "moment";
 
 import SearchBar from "../../components/SearchBar";
 import Table from "../../components/Table";
@@ -12,7 +13,7 @@ class App extends Component {
 
     this.state = {
       employees: [],
-      filteredEmployees: [],
+      employeesToRender: [],
       loading: true,
       error: "",
     };
@@ -24,7 +25,7 @@ class App extends Component {
 
     this.setState({
       employees,
-      filteredEmployees: employees,
+      employeesToRender: employees,
       loading: false,
       error: "",
     });
@@ -33,7 +34,7 @@ class App extends Component {
   handleOnChange = (event) => {
     const { employees } = this.state;
     const filterBy = event.target.value;
-    const filteredEmployees = employees.filter((employee) => {
+    const employeesToRender = employees.filter((employee) => {
       const lastName = employee.name.last;
       const firstName = employee.name.first;
 
@@ -41,15 +42,29 @@ class App extends Component {
     });
 
     this.setState({
-      filteredEmployees,
+      employeesToRender,
+    });
+  };
+
+  handleSortByDob = () => {
+    const { employeesToRender } = this.state;
+
+    const sortedEmployees = employeesToRender.sort((a, b) => {
+      return moment(a.dob.date).diff(b.dob.date);
+    });
+
+    this.setState({
+      employeesToRender: sortedEmployees,
     });
   };
 
   renderTable() {
-    const { loading, error, filteredEmployees } = this.state;
+    const { loading, error, employeesToRender } = this.state;
 
     if (!loading && !error) {
-      return <Table rows={filteredEmployees} />;
+      return (
+        <Table rows={employeesToRender} onSortByDob={this.handleSortByDob} />
+      );
     }
     return null;
   }

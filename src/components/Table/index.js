@@ -30,7 +30,7 @@ const renderRows = (rows) => {
   return <tbody>{rows.map(renderRow)}</tbody>;
 };
 
-const Table = ({ rows }) => {
+const Table = ({ rows, onSortByDob }) => {
   return (
     <div className="container">
       <table class="table table-striped">
@@ -40,7 +40,9 @@ const Table = ({ rows }) => {
             <th scope="col">Name</th>
             <th scope="col">Phone</th>
             <th scope="col">Email</th>
-            <th scope="col">DOB</th>
+            <th scope="col" onClick={onSortByDob}>
+              DOB
+            </th>
           </tr>
         </thead>
         {renderRows(rows)}
