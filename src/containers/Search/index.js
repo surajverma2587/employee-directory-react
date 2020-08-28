@@ -12,6 +12,7 @@ class App extends Component {
 
     this.state = {
       employees: [],
+      filteredEmployees: [],
       loading: true,
       error: "",
     };
@@ -23,16 +24,32 @@ class App extends Component {
 
     this.setState({
       employees,
+      filteredEmployees: employees,
       loading: false,
       error: "",
     });
   }
 
+  handleOnChange = (event) => {
+    const { employees } = this.state;
+    const filterBy = event.target.value;
+    const filteredEmployees = employees.filter((employee) => {
+      const lastName = employee.name.last;
+      const firstName = employee.name.first;
+
+      return firstName.includes(filterBy) || lastName.includes(filterBy);
+    });
+
+    this.setState({
+      filteredEmployees,
+    });
+  };
+
   renderTable() {
-    const { loading, error, employees } = this.state;
+    const { loading, error, filteredEmployees } = this.state;
 
     if (!loading && !error) {
-      return <Table rows={employees} />;
+      return <Table rows={filteredEmployees} />;
     }
     return null;
   }
@@ -40,7 +57,7 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-        <SearchBar />
+        <SearchBar onChange={this.handleOnChange} />
         {this.renderTable()}
       </div>
     );

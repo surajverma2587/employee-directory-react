@@ -1,9 +1,14 @@
 import React from "react";
 
-const SearchBar = () => {
+const SearchBar = ({ onChange }) => {
   return (
     <div class="form-group mx-2">
-      <input type="text" class="form-control" placeholder="Search Employee" />
+      <input
+        onChange={onChange}
+        type="text"
+        class="form-control"
+        placeholder="Search Employee"
+      />
     </div>
   );
 };
