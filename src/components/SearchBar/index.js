@@ -1,6 +1,6 @@
 import React from "react";
 
-const Search = () => {
+const SearchBar = () => {
   return (
     <div class="form-group mx-2">
       <input type="text" class="form-control" placeholder="Search Employee" />
@@ -8,4 +8,4 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default SearchBar;
