@@ -1,11 +1,12 @@
 import React from "react";
+import moment from "moment";
 
 const formatName = ({ title, first, last }) => {
   return `${title}. ${first} ${last}`;
 };
 
 const formatDate = (date) => {
-  return "dob";
+  return moment(date).format("DD-MM-YYYY");
 };
 
 const renderImage = (src, alt) => {
