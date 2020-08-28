@@ -1,6 +1,7 @@
 import React from "react";
 
-const Table = () => {
+const Table = ({ rows }) => {
+  console.log(rows);
   return (
     <div className="container">
       <table class="table table-striped">

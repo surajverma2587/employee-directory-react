@@ -29,9 +29,10 @@ class App extends Component {
   }
 
   renderTable() {
-    const { loading, error } = this.state;
+    const { loading, error, employees } = this.state;
+
     if (!loading && !error) {
-      return <Table />;
+      return <Table rows={employees} />;
     }
     return null;
   }
