@@ -1,7 +1,30 @@
 import React from "react";
 
+const formatName = ({ title, first, last }) => {
+  return `${title}. ${first} ${last}`;
+};
+
+const formatDate = (date) => {
+  return "dob";
+};
+
+const renderRow = (row) => {
+  return (
+    <tr>
+      <td>{row.picture.large}</td>
+      <td>{formatName(row.name)}</td>
+      <td>{row.phone}</td>
+      <td>{row.email}</td>
+      <td>{formatDate(row.dob.date)}</td>
+    </tr>
+  );
+};
+
+const renderRows = (rows) => {
+  return <tbody>{rows.map(renderRow)}</tbody>;
+};
+
 const Table = ({ rows }) => {
-  console.log(rows);
   return (
     <div className="container">
       <table class="table table-striped">
@@ -14,43 +37,7 @@ const Table = ({ rows }) => {
             <th scope="col">DOB</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>image</td>
-            <td>name</td>
-            <td>phoneNumber</td>
-            <td>email</td>
-            <td>dob</td>
-          </tr>
-          <tr>
-            <td>image</td>
-            <td>name</td>
-            <td>phoneNumber</td>
-            <td>email</td>
-            <td>dob</td>
-          </tr>
-          <tr>
-            <td>image</td>
-            <td>name</td>
-            <td>phoneNumber</td>
-            <td>email</td>
-            <td>dob</td>
-          </tr>
-          <tr>
-            <td>image</td>
-            <td>name</td>
-            <td>phoneNumber</td>
-            <td>email</td>
-            <td>dob</td>
-          </tr>
-          <tr>
-            <td>image</td>
-            <td>name</td>
-            <td>phoneNumber</td>
-            <td>email</td>
-            <td>dob</td>
-          </tr>
-        </tbody>
+        {renderRows(rows)}
       </table>
     </div>
   );
